@@ -1,0 +1,3 @@
+curl http://127.0.0.1:8000/api/dealers
+[{"id":1,"full_name":"Sunrise Motors","city":"Kansas City","state":"KS"},{"id":2,"full_name":"Prairie Auto Group","city":"Wichita","state":"KS"},{"id":3,"full_name":"Lone Star Cars","city":"Austin","state":"TX"}]
+

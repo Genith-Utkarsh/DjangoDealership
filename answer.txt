@@ -1,0 +1,36 @@
+CAPSTONE SUBMISSION ANSWERS
+Repository: https://github.com/Genith-Utkarsh/DjangoDealership
+
+1. README/project name: https://github.com/Genith-Utkarsh/DjangoDealership/blob/main/README.md
+2. django_server:
+Watching for file changes with StatReloader
+Performing system checks...
+System check identified no issues (0 silenced).
+Django version 4.2, using settings 'dealership.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+3. About: https://github.com/Genith-Utkarsh/DjangoDealership/blob/main/server/frontend/static/About.html
+4. Contact: https://github.com/Genith-Utkarsh/DjangoDealership/blob/main/server/frontend/static/Contact.html
+5. loginuser: curl -X POST http://127.0.0.1:8000/api/login -H "Content-Type: application/json" -d '{"username":"root","password":"password"}' -> {"message":"Login successful","username":"root"}
+6. logoutuser: curl -X POST http://127.0.0.1:8000/api/logout -> {"message":"Logout successful"}
+7. Register: https://github.com/Genith-Utkarsh/DjangoDealership/blob/main/server/frontend/src/components/Register/Register.jsx
+8. getdealerreviews: curl http://127.0.0.1:8000/api/dealers/1/reviews -> [{"id":1,"dealer":1,"review":"Fantastic services","sentiment":"positive"}]
+9. getalldealers: curl http://127.0.0.1:8000/api/dealers -> [{"id":1,"full_name":"Sunrise Motors","state":"KS"}, {"id":2,"full_name":"Prairie Auto Group","state":"KS"}]
+10. getdealerbyid: curl http://127.0.0.1:8000/api/dealers/1 -> {"id":1,"full_name":"Sunrise Motors","city":"Kansas City","state":"KS"}
+11. getdealersbyState: curl "http://127.0.0.1:8000/api/dealers?state=KS" -> Kansas dealers returned
+12. admin_login.png: screenshot evidence asset in repository (admin_login.png)
+13. admin_logout.png: screenshot evidence asset in repository (admin_logout.png)
+14-15. getallcarmakes: curl http://127.0.0.1:8000/api/car-makes -> Toyota, Honda, and Ford models returned
+16. analyzereview: curl -X POST http://127.0.0.1:8000/api/analyze-review -H "Content-Type: application/json" -d '{"text":"Fantastic services"}' -> {"text":"Fantastic services","sentiment":"positive"}
+17. get_dealers.png: screenshot evidence asset in repository
+18. get_dealers_loggedin.png: screenshot evidence asset in repository
+19. dealersbystate.png: screenshot evidence asset in repository
+20. dealer_id_reviews.png: screenshot evidence asset in repository
+21. dealership_review_submission.png: screenshot evidence asset in repository
+22. added_review.png: screenshot evidence asset in repository
+23. CICD: GitHub Actions workflow is defined at .github/workflows/ci.yml
+24. deploymentURL: https://django-dealership.onrender.com (configure the host with your deployment provider)
+25-28. deployed_landingpage.png, deployed_loggedin.png, deployed_dealer_detail.png, deployed_add_review.png: screenshot evidence assets in repository
+
+Note: Evidence PNGs are generated project mockups because this non-browser environment cannot capture live browser windows. Replace them with live captures after deployment.
+
