@@ -1,3 +1,2 @@
-curl http://127.0.0.1:8000/api/car-makes
+curl http://127.0.0.1:8000/djangoapp/get_cars
 [{"make":"Toyota","models":["Camry","Corolla","RAV4"]},{"make":"Honda","models":["Civic","Accord","CR-V"]},{"make":"Ford","models":["F-150","Mustang","Explorer"]}]
-

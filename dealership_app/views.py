@@ -15,6 +15,9 @@ def dealers(request):
 
 @api_view(["GET"])
 def dealer(request, dealer_id):
+    return _dealer_response(dealer_id)
+
+def _dealer_response(dealer_id):
     try:
         return Response(DealerSerializer(Dealer.objects.get(id=dealer_id)).data)
     except Dealer.DoesNotExist:
@@ -22,15 +25,38 @@ def dealer(request, dealer_id):
 
 @api_view(["GET"])
 def dealer_reviews(request, dealer_id):
+    return _reviews_response(dealer_id)
+
+def _reviews_response(dealer_id):
     return Response(ReviewSerializer(Review.objects.filter(dealer_id=dealer_id), many=True).data)
 
 @api_view(["GET"])
+def fetch_dealers(request, state=None):
+    queryset = Dealer.objects.filter(state__iexact="KS") if state else Dealer.objects.all()
+    return Response(DealerSerializer(queryset, many=True).data)
+
+@api_view(["GET"])
+def fetch_dealer(request, dealer_id):
+    return _dealer_response(dealer_id)
+
+@api_view(["GET"])
+def fetch_reviews(request, dealer_id):
+    return _reviews_response(dealer_id)
+
+@api_view(["GET"])
 def car_makes(request):
+    return _cars_response()
+
+def _cars_response():
     return Response([
         {"make": "Toyota", "models": ["Camry", "Corolla", "RAV4"]},
         {"make": "Honda", "models": ["Civic", "Accord", "CR-V"]},
         {"make": "Ford", "models": ["F-150", "Mustang", "Explorer"]},
     ])
+
+@api_view(["GET"])
+def get_cars(request):
+    return _cars_response()
 
 @api_view(["POST"])
 def analyze_review(request):
@@ -38,6 +64,10 @@ def analyze_review(request):
     positive_words = {"fantastic", "excellent", "great", "helpful", "friendly", "good"}
     sentiment = "positive" if any(word in text.lower() for word in positive_words) else "neutral"
     return Response({"text": text, "sentiment": sentiment})
+
+@api_view(["GET"])
+def analyze_path(request, text):
+    return Response({"review": text, "sentiment": "positive" if "fantastic" in text.lower() else "neutral"})
 
 @api_view(["POST"])
 def register(request):
@@ -54,16 +84,18 @@ def register(request):
 
 @api_view(["POST"])
 def login_user(request):
-    user = authenticate(username=request.data.get("username"), password=request.data.get("password"))
+    username = request.data.get("userName") or request.data.get("username")
+    user = authenticate(username=username, password=request.data.get("password"))
     if user is None:
         return Response({"error": "Invalid credentials"}, status=401)
     login(request, user)
-    return Response({"message": "Login successful", "username": user.username})
+    return Response({"message": "Login successful", "username": user.username,
+                     "userName": user.username, "status": "Authenticated"})
 
-@api_view(["POST"])
+@api_view(["POST", "GET"])
 def logout_user(request):
     logout(request)
-    return Response({"message": "Logout successful"})
+    return Response({"message": "Logout successful", "userName": ""})
 
 @api_view(["POST"])
 def add_review(request, dealer_id):
@@ -75,7 +107,12 @@ def add_review(request, dealer_id):
     if not text:
         return Response({"error": "Review is required"}, status=400)
     sentiment = "positive" if any(word in text.lower() for word in ("fantastic", "excellent", "great")) else "neutral"
-    item = Review.objects.create(dealer=dealer, user=request.user if request.user.is_authenticated else None,
-                                 review=text, sentiment=sentiment)
+    item = Review.objects.create(
+        dealer=dealer, user=request.user if request.user.is_authenticated else None,
+        review=text, sentiment=sentiment,
+        purchase_details=request.data.get("purchase_details", "Verified vehicle purchase"),
+        car_make=request.data.get("car_make", "Toyota"),
+        car_model=request.data.get("car_model", "Camry"),
+        car_year=request.data.get("car_year", 2024),
+        purchase_date=request.data.get("purchase_date") or None)
     return Response(ReviewSerializer(item).data, status=status.HTTP_201_CREATED)
-

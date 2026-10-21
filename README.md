@@ -1,8 +1,10 @@
-# Django Dealership
+# xrwvm-fullstack_developer_capstone
 
 ## Project name
 
-**Django Dealership Review Portal**
+**fullstack_developer_capstone**
+
+Repository name: `xrwvm-fullstack_developer_capstone`
 
 A capstone Django and React application for browsing car dealers, viewing dealer details and reviews, registering users, and submitting sentiment-analyzed reviews.
 
@@ -17,4 +19,3 @@ python manage.py runserver
 ```
 
 The API is available under `/api/`, and the static frontend pages are under `/static/`.
-

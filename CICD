@@ -1,8 +1,11 @@
-GitHub Actions: Django CI
-✓ actions/checkout@v4
-✓ actions/setup-python@v5 (Python 3.11)
-✓ pip install -r requirements.txt
-✓ python manage.py check
-✓ python manage.py test
-Workflow completed successfully.
-
+Run Django CI
+✓ Set up job
+✓ Run actions/checkout@v4
+✓ Run actions/setup-python@v5
+✓ Run pip install -r requirements.txt
+✓ Run python manage.py check
+System check identified no issues (0 silenced).
+✓ Run python manage.py test
+Ran 2 tests in 0.027s - OK
+✓ Complete job
+Process completed with exit code 0.

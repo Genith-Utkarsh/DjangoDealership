@@ -19,5 +19,9 @@ class Review(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     review = models.TextField()
     sentiment = models.CharField(max_length=20, default="positive")
+    purchase_details = models.CharField(max_length=200, default="Verified vehicle purchase")
+    car_make = models.CharField(max_length=80, default="Toyota")
+    car_model = models.CharField(max_length=80, default="Camry")
+    car_year = models.PositiveIntegerField(default=2024)
+    purchase_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-

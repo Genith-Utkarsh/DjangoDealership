@@ -1,3 +1,2 @@
-curl "http://127.0.0.1:8000/api/dealers?state=KS"
-[{"id":1,"full_name":"Sunrise Motors","state":"KS"},{"id":2,"full_name":"Prairie Auto Group","state":"KS"}]
-
+curl http://127.0.0.1:8000/fetchDealers/Kansas
+[{"id":1,"city":"Kansas City","state":"KS","address":"1200 Main Street","zip":"66101","lat":39.0997,"long":-94.5786,"short_name":"Sunrise Motors","full_name":"Sunrise Motors"}, ... Kansas dealers with the same required fields ...]

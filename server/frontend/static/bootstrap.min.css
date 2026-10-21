@@ -1,0 +1,5 @@
+/* Local Bootstrap-compatible utility layer used by the capstone static pages. */
+.container { width: 100%; margin-inline: auto; padding-inline: 1rem; }
+.row { display: flex; flex-wrap: wrap; gap: 1rem; }
+.col { flex: 1 0 0%; }
+.btn { display: inline-block; padding: .5rem 1rem; border-radius: .375rem; text-decoration: none; }

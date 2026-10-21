@@ -11,4 +11,12 @@ urlpatterns = [
     path("register", views.register),
     path("login", views.login_user),
     path("logout", views.logout_user),
+    path("fetchDealers", views.fetch_dealers),
+    path("fetchDealers/<str:state>", views.fetch_dealers),
+    path("fetchDealer/<int:dealer_id>", views.fetch_dealer),
+    path("fetchReviews/dealer/<int:dealer_id>", views.fetch_reviews),
+    path("djangoapp/get_cars", views.get_cars),
+    path("analyze/<path:text>", views.analyze_path),
+    path("djangoapp/login", views.login_user),
+    path("djangoapp/logout", views.logout_user),
 ]

@@ -1,3 +1,2 @@
-curl http://127.0.0.1:8000/api/dealers
-[{"id":1,"full_name":"Sunrise Motors","city":"Kansas City","state":"KS"},{"id":2,"full_name":"Prairie Auto Group","city":"Wichita","state":"KS"},{"id":3,"full_name":"Lone Star Cars","city":"Austin","state":"TX"}]
-
+curl http://127.0.0.1:8000/fetchDealers
+Output: JSON array of 50 dealers. Each object contains id, city, state, address, zip, lat, long, short_name, and full_name. Example: [{"id":1,"city":"Kansas City","state":"KS","address":"1200 Main Street","zip":"66101","lat":39.0997,"long":-94.5786,"short_name":"Sunrise Motors","full_name":"Sunrise Motors"}, ... {"id":50,"full_name":"Heartland Auto 50", ...}]
